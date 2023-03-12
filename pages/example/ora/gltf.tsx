@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 
-const OraGlbPage: NextPage = () => {
+const OraGltfPage: NextPage = () => {
 
 
   return (
@@ -12,5 +12,5 @@ const OraGlbPage: NextPage = () => {
 };
 
 
-export default OraGlbPage;
+export default OraGltfPage;
 
