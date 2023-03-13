@@ -11,6 +11,8 @@ const OraPage: NextPage = () => {
     <Nft
         contract={contract_address as string}
         tokenId={token_id as string}
+        service={""}
+        url={""}
     />
   );
 };

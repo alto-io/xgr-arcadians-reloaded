@@ -8,7 +8,7 @@ type Data = {
   };
 };
 
-const file = "exampledb.json";
+const file = ".exampledb.json";
 const adapter = new JSONFile<Data>(file);
 const db = new Low(adapter);
 

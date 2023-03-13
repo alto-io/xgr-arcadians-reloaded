@@ -16,6 +16,7 @@
         "isolatedModules": true,
         "noEmit": true,
         "noImplicitAny": false,    
+        "useUnknownInCatchVariables": false,
         "rootDirs": [".", "../common/src"],
         "baseUrl": ".",
         "jsx": "preserve",
