@@ -1,5 +1,6 @@
-import { Low } from "lowdb";
-import { JSONFile } from "lowdb/node";
+import { LowSync } from "lowdb";
+import { JSONFileSync } from "lowdb/node";
+
 import type { Address, ContractDetails } from "core/types";
 
 type Data = {
@@ -9,7 +10,5 @@ type Data = {
 };
 
 const file = ".exampledb.json";
-const adapter = new JSONFile<Data>(file);
-const db = new Low(adapter);
-
+const db = new LowSync(new JSONFileSync<Data>(file));
 export { db };
