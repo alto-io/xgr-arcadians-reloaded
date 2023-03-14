@@ -77,7 +77,7 @@ function AnimatedNFT({ nft }: { nft?: NftMetadata }) {
         {
             (attributes as Array<Attribute>).map((attrib) => {
                 return (
-                    <p>{attrib.value}</p>
+                    <p key={attrib.trait_type}>{attrib.value}</p>
                     
                 )
             })
