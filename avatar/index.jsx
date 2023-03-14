@@ -68,10 +68,15 @@ var g_fileList = [
 var g_OraPartsList = { PartsList: {} };
 var g_OraPartsCategoryArray = [];
 var g_ArrayOfAllParts = [];
+var g_initialized = false;
+var g_nftLoaded = false;
+var g_oraLoaded = false;
+
 /**
  * Main initialize function.
  */
 export function initialize(canvas, scene) {
+
     g_canvas = canvas;
     g_scene = scene;
     g_engine = scene.getEngine();
@@ -84,6 +89,18 @@ export function initialize(canvas, scene) {
     var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), g_scene);
 
     waitForLoading();
+}
+
+export function isInitialized() {
+    return g_initialized;
+}
+
+export function nftLoaded() {
+    return g_nftLoaded;
+}
+
+export function oraLoaded() {
+    return g_oraLoaded;
 }
 
 async function initializeVariablesFromOra() {
@@ -161,7 +178,15 @@ export async function initializeOra(canvas) {
 
     await initializeVariablesFromOra();
 
+    g_oraLoaded = true;
+
     setTimeout(renderAvatar, 50);
+}
+
+export async function initializeOraWithoutCanvas() {
+    await loadOraFile();
+    await initializeVariablesFromOra();
+    g_oraLoaded = true;
 }
 
 export function getOraPartsCategories() {
@@ -250,6 +275,7 @@ function afterLoading() {
     initEvents();
     initGender();
     loadAvatar("Male");
+    g_initialized = true;
 }
 
 /**
@@ -335,6 +361,11 @@ export function loadAvatar(id) {
         // play idle by default
         playAnim("Idle");
     });
+}
+
+export function loadNFT(nft) {
+    console.log(nft);
+    g_nftLoaded = true;
 }
 
 function createSpritesheet() {

@@ -119,5 +119,5 @@ export var g_config = {
 	],
 
 	partsConfigPath: "/v1/arcadian-parts/partsConfig.json",
-	oraConfigPath: "/parts/arcadians.ora"
+	oraConfigPath: "/ora/assets.ora"
 };

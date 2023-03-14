@@ -4,8 +4,6 @@ import { createContext, useEffect, useRef, useState } from "react";
 import { useNft } from "use-nft"
 import { Engine, Scene } from "@babylonjs/core";
 import * as AvatarBuilder from "../../avatar/";
-import * as Config from "../../avatar/config";
-
 
 export const colors = {
     background: "#111111",
@@ -13,12 +11,7 @@ export const colors = {
     accentOver: "#dddddd",
     accentOver2: "#000000",
   }
-
-type NftProps = {
-  contract: string
-  tokenId: string
-}
-
+  
 type Attribute = {
     trait_type: string
     value: string
@@ -50,9 +43,32 @@ interface OraGlbViewerProps {
      * Will run on every frame render.  We are spinning the box on y-axis.
      */
     const onRender = (scene) => {
-
+        if (AvatarBuilder.isInitialized() && !AvatarBuilder.nftLoaded()) {
+            if (AvatarBuilder.oraLoaded() && nft) {
+                AvatarBuilder.loadNFT(nft);
+            }
+        }
     };    
 
+    // wait for jsora to be loaded by the window
+    useEffect(() => {
+        const waitForJsOra = async () => {
+            if ((window as any).jsora == null) {
+                setTimeout(waitForJsOra, 50);
+            }
+
+            else {
+                await AvatarBuilder.initializeOraWithoutCanvas();
+            }
+        }
+
+        setTimeout(waitForJsOra, 50);
+
+        return () => {
+        };
+    })    
+
+    // wait for babylonjs scene to be ready
     useEffect(() => {
         const { current: canvas } = reactCanvasBabylon;
 
@@ -92,8 +108,16 @@ interface OraGlbViewerProps {
       <>
         <canvas height="280" width="280" ref={reactCanvasBabylon} />
         {(() => {
-          if (loading) return <NftLoading />
-          if (error) return <NftError error={error} reload={reload} />
+          if (loading) {
+            return <NftLoading />
+          }
+          if (error) {
+            return <NftError error={error} reload={reload} />
+          }
+          
+          // load the nft on avatar builder
+          AvatarBuilder.loadNFT(nft);
+
           return (
           <> 
           <AnimatedNFT nft={nft} />
