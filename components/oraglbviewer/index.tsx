@@ -1,10 +1,11 @@
-import type { ReactNode } from "react"
 import type { NftMetadata } from "use-nft"
 
-import React from "react"
+import { createContext, useEffect, useRef, useState } from "react";
 import { useNft } from "use-nft"
-import { css } from "@emotion/react"
-import LoopVideo from "../LoopVideo"
+import { Engine, Scene } from "@babylonjs/core";
+import * as AvatarBuilder from "../../avatar/";
+import * as Config from "../../avatar/config";
+
 
 export const colors = {
     background: "#111111",
@@ -23,19 +24,86 @@ type Attribute = {
     value: string
 }
 
+interface OraGlbViewerProps {
+    onCanvasReady: any,
+    contract: any,
+    tokenId: any
+}
 
-function OraGlbViewer({ contract, tokenId }: NftProps) {
-  const { nft, loading, error, reload } = useNft(contract, tokenId)
 
-  return (
-    <>
-      {(() => {
-        if (loading) return <NftLoading />
-        if (error) return <NftError error={error} reload={reload} />
-        return <AnimatedNFT nft={nft} />
-      })()}
-    </>
-  )
+ function OraGlbViewer ( {
+    onCanvasReady, 
+    contract, 
+    tokenId
+    } : OraGlbViewerProps )
+    {
+    const { nft, loading, error, reload } = useNft(contract, tokenId)
+    const reactCanvasBabylon = useRef(null);
+
+    const onSceneReady = (scene) => {
+        console.log("onSceneReady");
+        const canvas = scene.getEngine().getRenderingCanvas();
+        AvatarBuilder.initialize(canvas, scene);
+    };
+
+    /**
+     * Will run on every frame render.  We are spinning the box on y-axis.
+     */
+    const onRender = (scene) => {
+
+    };    
+
+    useEffect(() => {
+        const { current: canvas } = reactCanvasBabylon;
+
+        if (!canvas) return;
+
+        const engine = new Engine(canvas);
+        const scene = new Scene(engine);
+        if (scene.isReady()) {
+            onSceneReady(scene);
+        } else {
+            scene.onReadyObservable.addOnce((scene) => onSceneReady(scene));
+        }
+
+        engine.runRenderLoop(() => {
+            if (typeof onRender === "function") onRender(scene);
+            scene.render();
+        });
+
+        const resize = () => {
+            scene.getEngine().resize();
+        };
+
+        if (window) {
+            window.addEventListener("resize", resize);
+        }
+
+        return () => {
+            scene.getEngine().dispose();
+
+            if (window) {
+                window.removeEventListener("resize", resize);
+            }
+        };
+    }, []);    
+
+    return (
+      <>
+        <canvas height="280" width="280" ref={reactCanvasBabylon} />
+        {(() => {
+          if (loading) return <NftLoading />
+          if (error) return <NftError error={error} reload={reload} />
+          return (
+          <> 
+          <AnimatedNFT nft={nft} />
+          </>
+          )
+          
+        })()}
+      </>
+    )
+  
 }
 
 function NftLoading() {
@@ -71,6 +139,7 @@ function AnimatedNFT({ nft }: { nft?: NftMetadata }) {
   return (
     <>
       <div>
+        
         {
           image && <img src={image} height="280" alt="" />
         }
@@ -87,26 +156,6 @@ function AnimatedNFT({ nft }: { nft?: NftMetadata }) {
   )
 }
 
-export default OraGlbViewer
+OraGlbViewer.displayName = "OraGlbViewer";
 
-
-// function AnimatedNFT({
-//   nft,
-//   children,
-// }: {
-//   nft?: NftMetadata,    
-//   children: ReactNode
-// }) {
-//   return (
-//       <section
-//       >
-//         <div
-//         >
-//           {children}
-//           <div
-//           >
-//           </div>
-//         </div>
-//       </section>
-//   )
-// }
+export default OraGlbViewer;

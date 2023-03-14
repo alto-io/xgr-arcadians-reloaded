@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@babylonjs/core": "^5.43.0",
     "@emotion/react": "^11.9.0",   
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.4",
@@ -20,6 +21,8 @@
     "use-nft": "^0.12.0"
   },
   "devDependencies": {
+    "@babylonjs/loaders": "^5.43.1",
+    "@babylonjs/materials": "^5.43.1",
     "@types/node": "18.15.0",
     "@types/react": "18.0.28",
     "abitype": "^0.3.0",
