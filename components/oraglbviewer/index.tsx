@@ -190,20 +190,24 @@ function AnimatedNFT({ nft }: { nft?: NftMetadata }) {
 
   return (
     <>
-      <div>
+    {
+    // 
+
+    //   <div>
         
-        {
-          image && <img src={image} height="280" alt="" />
-        }
-        {
-            (attributes as Array<Attribute>).map((attrib) => {
-                return (
-                    <p key={attrib.trait_type}>{attrib.value}</p>
+    //     {
+    //       image && <img src={image} height="280" alt="" />
+    //     }
+    //     {
+    //         (attributes as Array<Attribute>).map((attrib) => {
+    //             return (
+    //                 <p key={attrib.trait_type}>{attrib.value}</p>
                     
-                )
-            })
-        }
-      </div>
+    //             )
+    //         })
+    //     }
+    //   </div>
+    }
     </>
   )
 }
