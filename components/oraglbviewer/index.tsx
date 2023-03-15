@@ -23,6 +23,8 @@ interface OraGlbViewerProps {
     tokenId: any
 }
 
+let loadedNft:NftMetadata;
+
 
  function OraGlbViewer ( {
     onCanvasReady, 
@@ -33,10 +35,11 @@ interface OraGlbViewerProps {
     const { nft, loading, error, reload } = useNft(contract, tokenId)
     const reactCanvasBabylon = useRef(null);
 
-    const onSceneReady = (scene) => {
-        console.log("onSceneReady");
+    const onSceneReady = async (scene) => {
+        // console.log("onSceneReady");
         const canvas = scene.getEngine().getRenderingCanvas();
-        AvatarBuilder.initialize(canvas, scene);
+        await AvatarBuilder.initialize(canvas, scene);
+        prepareJsOra();
     };
 
     /**
@@ -44,14 +47,27 @@ interface OraGlbViewerProps {
      */
     const onRender = (scene) => {
     };   
-    
-    function renderNFT() {
-        let nftRendered = false;
 
+    function prepareJsOra() {
+            if ((window as any).jsora == null) {
+                setTimeout(prepareJsOra, 50);
+            }
+
+            else {
+                AvatarBuilder.initializeOraWithoutCanvas();
+                renderNFT();
+            }
+    }
+    
+    let nftRendered = false;
+
+    function renderNFT() {
+        
         if (AvatarBuilder.isInitialized() && AvatarBuilder.oraLoaded())
         {
-            if (nft) {
-                AvatarBuilder.loadNFT(nft);
+            if (loadedNft) {
+                // console.log("loading nft");
+                AvatarBuilder.loadNFT(loadedNft);
                 nftRendered = true;
             }
         }
@@ -62,24 +78,24 @@ interface OraGlbViewerProps {
         }
     }
 
-    // wait for jsora to be loaded by the window
-    useEffect(() => {
-        const waitForJsOra = async () => {
-            if ((window as any).jsora == null) {
-                setTimeout(waitForJsOra, 50);
-            }
+    // // wait for jsora to be loaded by the window
+    // useEffect(() => {
+    //     const waitForJsOra = async () => {
+    //         if ((window as any).jsora == null) {
+    //             setTimeout(waitForJsOra, 50);
+    //         }
 
-            else {
-                await AvatarBuilder.initializeOraWithoutCanvas();
-                renderNFT();
-            }
-        }
+    //         else {
+    //             await AvatarBuilder.initializeOraWithoutCanvas();
+    //             renderNFT();
+    //         }
+    //     }
 
-        setTimeout(waitForJsOra, 50);
+    //     setTimeout(waitForJsOra, 50);
 
-        return () => {
-        };
-    })    
+    //     return () => {
+    //     };
+    // })    
 
     // wait for babylonjs scene to be ready
     useEffect(() => {
@@ -128,6 +144,8 @@ interface OraGlbViewerProps {
             return <NftError error={error} reload={reload} />
           }
           
+          loadedNft = nft;
+
           return (
           <> 
           <AnimatedNFT nft={nft} />

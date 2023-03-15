@@ -28,7 +28,7 @@ async function loadOraFile() {
 
     await g_jsoraProject.load(loadedFile);
 
-    console.log("ora loaded");
+    // console.log("ora loaded");
 }
 
 export async function loadLocalOraFile(fileblob) {
@@ -77,7 +77,7 @@ var g_oraLoaded = false;
 /**
  * Main initialize function.
  */
-export function initialize(canvas, scene) {
+export async function initialize(canvas, scene) {
 
     g_canvas = canvas;
     g_scene = scene;
@@ -90,7 +90,7 @@ export function initialize(canvas, scene) {
 
     var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), g_scene);
 
-    waitForLoading();
+    await waitForLoading();
 }
 
 export function isInitialized() {
@@ -186,7 +186,7 @@ export async function initializeOra(canvas) {
 }
 
 export async function initializeOraWithoutCanvas() {
-    console.log("loading ora file");
+    // console.log("loading ora file");
     await loadOraFile();
     await initializeVariablesFromOra();
  
@@ -369,7 +369,7 @@ export function loadAvatar(id) {
 
 function findNodeInOra(value) {
     let ora = window.jsora.JSOra();
-    console.log(ora.children);
+    console.log(ora);
 }
 
 export function loadNFT(nft) {
