@@ -43,12 +43,24 @@ interface OraGlbViewerProps {
      * Will run on every frame render.  We are spinning the box on y-axis.
      */
     const onRender = (scene) => {
-        if (AvatarBuilder.isInitialized() && !AvatarBuilder.nftLoaded()) {
-            if (AvatarBuilder.oraLoaded() && nft) {
+    };   
+    
+    function renderNFT() {
+        let nftRendered = false;
+
+        if (AvatarBuilder.isInitialized() && AvatarBuilder.oraLoaded())
+        {
+            if (nft) {
                 AvatarBuilder.loadNFT(nft);
+                nftRendered = true;
             }
         }
-    };    
+
+        // try again, ora or babylonjs might not be ready
+        if (!nftRendered) {
+            setTimeout(renderNFT, 50);
+        }
+    }
 
     // wait for jsora to be loaded by the window
     useEffect(() => {
@@ -59,6 +71,7 @@ interface OraGlbViewerProps {
 
             else {
                 await AvatarBuilder.initializeOraWithoutCanvas();
+                renderNFT();
             }
         }
 
@@ -115,9 +128,6 @@ interface OraGlbViewerProps {
             return <NftError error={error} reload={reload} />
           }
           
-          // load the nft on avatar builder
-          AvatarBuilder.loadNFT(nft);
-
           return (
           <> 
           <AnimatedNFT nft={nft} />

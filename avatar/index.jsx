@@ -27,6 +27,8 @@ async function loadOraFile() {
     const loadedFile = await fetch(g_config.oraConfigPath).then(r => r.blob());
 
     await g_jsoraProject.load(loadedFile);
+
+    console.log("ora loaded");
 }
 
 export async function loadLocalOraFile(fileblob) {
@@ -184,8 +186,10 @@ export async function initializeOra(canvas) {
 }
 
 export async function initializeOraWithoutCanvas() {
+    console.log("loading ora file");
     await loadOraFile();
     await initializeVariablesFromOra();
+ 
     g_oraLoaded = true;
 }
 
@@ -363,8 +367,17 @@ export function loadAvatar(id) {
     });
 }
 
+function findNodeInOra(value) {
+    let ora = window.jsora.JSOra();
+    console.log(ora.children);
+}
+
 export function loadNFT(nft) {
-    console.log(nft);
+    nft.rawData.attributes.map( (part) => {
+        let node = findNodeInOra(part.value);
+        console.log(part);
+    });
+
     g_nftLoaded = true;
 }
 
