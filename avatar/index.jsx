@@ -367,15 +367,26 @@ export function loadAvatar(id) {
     });
 }
 
-function findNodeInOra(value) {
-    let ora = window.jsora.JSOra();
-    console.log(ora);
+function findNodeInOra(part) {
+    let partPath;
+    let partSuffix = part.trait_type + "/" + part.value;
+    for (var i = 0; i < g_ArrayOfAllParts.length; i++) {
+        partPath = g_ArrayOfAllParts[i];
+        if (partPath.includes(partSuffix)) {
+            return partPath;
+        }
+    }
+
+    return null;
 }
 
 export function loadNFT(nft) {
+
     nft.rawData.attributes.map( (part) => {
-        let node = findNodeInOra(part.value);
-        console.log(part);
+        let partPath = findNodeInOra(part);
+        if (partPath) {
+            updateBabylonParts(part.trait_type, partPath);
+        }
     });
 
     g_nftLoaded = true;
