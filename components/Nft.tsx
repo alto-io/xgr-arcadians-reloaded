@@ -3,28 +3,18 @@ import type { NftMetadata } from "use-nft"
 
 import React from "react"
 import { useNft } from "use-nft"
-import { css } from "@emotion/react"
 import LoopVideo from "./LoopVideo"
-
-export const colors = {
-    background: "#111111",
-    accent: "#a669a2",
-    accentOver: "#dddddd",
-    accentOver2: "#000000",
-  }
 
 type NftProps = {
   contract: string
   tokenId: string
-  service: string
-  url: string
 }
 
-function Nft({ contract, tokenId, service, url }: NftProps) {
+function Nft({ contract, tokenId }: NftProps) {
   const { nft, loading, error, reload } = useNft(contract, tokenId)
 
   return (
-    <Card url={nft && url} label={service}>
+    <Card >
       {(() => {
         if (loading) return <NftLoading />
         if (error) return <NftError error={error} reload={reload} />
@@ -35,31 +25,18 @@ function Nft({ contract, tokenId, service, url }: NftProps) {
 }
 
 function Card({
-  label,
-  url,
   children,
 }: {
-  label: string
-  url?: string
   children: ReactNode
 }) {
-  const linkProps = url ? { href: url, target: "_blank" } : {}
   return (
-    <a
-      {...linkProps}
-    >
       <section
       >
         <div
         >
           {children}
-          <div
-          >
-            {label}
-          </div>
         </div>
       </section>
-    </a>
   )
 }
 
