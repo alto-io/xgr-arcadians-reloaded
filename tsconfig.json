@@ -22,7 +22,11 @@
         "paths": {
           "~~/*": ["./src/*"],
           "~common/*": ["../common/src/*"]
-        }
+        },
+        "types": [
+            "@emotion/react/types/css-prop"        
+        ]
+    
     },
     "include": [
         "src", 
@@ -37,8 +41,4 @@
         "node_modules",
         "**/node_modules",
     ],
-    "types": [
-        "babylonjs",
-        "vitest/globals"
-    ]
 }

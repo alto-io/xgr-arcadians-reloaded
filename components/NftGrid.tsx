@@ -22,6 +22,12 @@ function NftGrid({ nftCollections }: NftGridProps) {
 
   return (
     <div
+      css={css`
+        display: grid;
+        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-auto-rows: 510px;
+      `}
     >
       {trail.map(({ progress }, index) => {
         const [contract, collectionName, url] = nftCollections[index]
