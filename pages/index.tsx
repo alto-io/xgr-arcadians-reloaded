@@ -69,7 +69,7 @@ export default function Home() {
               use-nft <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              This project uses spectre's use-nft as a fallback renderer
+              This project use`&apos;`s spectres use-nft as a fallback renderer
             </p>
           </a>
 
