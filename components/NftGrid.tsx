@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { css } from "@emotion/react"
-import { useTrail, animated } from "react-spring"
-import Nft from "./Nft"
+import { useTrail, a } from "react-spring"
+import styles from '../styles/Home.module.css'
+import NftCard from "./NftCard"
 
 type NftGridProps = {
   nftCollections: Array<[string, string, string]>
@@ -21,19 +21,13 @@ function NftGrid({ nftCollections }: NftGridProps) {
   useEffect(() => setProgress(1), [])
 
   return (
-    <div
-      css={css`
-        display: grid;
-        gap: 40px;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        grid-auto-rows: 510px;
-      `}
+    <div className={styles.cardgrid}
     >
       {trail.map(({ progress }, index) => {
-        const [contract, collectionName, url] = nftCollections[index]
+        const [contract, collectionName, collectionUrl] = nftCollections[index]
         return (
-          <animated.div
-            key={contract + 1}
+          <a.div
+            key={contract}
             style={{
               opacity: progress as any, // until react-spring 9.0.0-rc.4, see https://github.com/pmndrs/react-spring/issues/1102
               transform: progress.to(
@@ -41,11 +35,12 @@ function NftGrid({ nftCollections }: NftGridProps) {
               ),
             }}
           >
-            <Nft
+            <NftCard
               contract={contract}
-              tokenId={"34"}
+              collectionName={collectionName}
+              collectionUrl={collectionUrl}
             />
-          </animated.div>
+          </a.div>
         )
       })}
     </div>
