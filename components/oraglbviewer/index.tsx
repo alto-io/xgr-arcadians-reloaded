@@ -61,6 +61,18 @@ let loadedNft:NftMetadata;
     
     let nftRendered = false;
 
+    // use messages to change nft animation
+    function addMessageListeners() {
+        window.addEventListener('message', function(event) {
+            if (typeof event.data === 'string') { 
+                let animation = (event.data as string).split("anim:")[1];
+                if (animation) {
+                    AvatarBuilder.playAnim(animation);
+                }
+            }
+          });        
+    }
+
     function renderNFT() {
         
         if (AvatarBuilder.isInitialized() && AvatarBuilder.oraLoaded())
@@ -68,6 +80,7 @@ let loadedNft:NftMetadata;
             if (loadedNft) {
                 // console.log("loading nft");
                 AvatarBuilder.loadNFT(loadedNft);
+                addMessageListeners();
                 nftRendered = true;
             }
         }
