@@ -60,6 +60,21 @@ export default function Home() {
           </a>
 
           <a
+            href="https://github.com/alto-io/arcadians-avatar-builder"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              arcadians-avatar-builder <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              Supporting project showing avatar customization using the Arcadians collection
+            </p>
+          </a>
+
+
+          <a
             href="https://use-nft.spectre.xyz/"
             className={styles.card}
             target="_blank"
