@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { OraImage } from "components/oraimage";
 import OraGlbViewer from "components/oraglbviewer";
 
 import Nft from "components/Nft"
