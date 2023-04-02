@@ -182,7 +182,7 @@ export async function initializeOra(canvas) {
 
     g_oraLoaded = true;
 
-    setTimeout(renderAvatar, 50);
+    // setTimeout(renderAvatar, 50);
 }
 
 export async function initializeOraWithoutCanvas() {
@@ -208,7 +208,7 @@ export async function getItemImage(itemPath) {
     return imageData;
 }
 
-export function displayPart(itemPath) {
+export function displayPart(itemPath, rerender) {
     var partLayer = g_jsoraProject.get_by_path(itemPath);
 
     // hide same layer parts
@@ -222,7 +222,9 @@ export function displayPart(itemPath) {
 
     // toggle visibility
     partLayer.hidden = !partLayer.hidden;
-    renderAvatar();
+    if (rerender) {
+        renderAvatar();
+    }
 }
 
 // TODO: 
@@ -390,6 +392,18 @@ export function loadNFT(nft) {
     });
 
     g_nftLoaded = true;
+}
+
+export function renderOraCanvas(nft) {
+    
+    nft.rawData.attributes.map( (part) => {
+        let partPath = findNodeInOra(part);
+        if (partPath) {
+            displayPart(partPath, false);
+        }
+    });
+
+    renderAvatar();
 }
 
 function createSpritesheet() {

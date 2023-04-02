@@ -1,6 +1,6 @@
 import type { NftMetadata } from "use-nft"
 
-import { createContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useNft } from "use-nft"
 import { Engine, Scene } from "@babylonjs/core";
 import * as AvatarBuilder from "../../avatar/";
