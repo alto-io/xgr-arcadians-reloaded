@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import NftCard from "./NftCard"
 
 type NftGridProps = {
-  nftCollections: Array<[string, string, string]>
+  nftCollections: Array<[string, string, string, Array<string>]>
 }
 
 function NftGrid({ nftCollections }: NftGridProps) {

@@ -2,7 +2,8 @@ export default [
     [
       "0xc3c8a1e1ce5386258176400541922c414e1b35fd",
       "Arcadians",
-      "https://opensea.io/collection/arcadians-by-opgames"
+      "https://opensea.io/collection/arcadians-by-opgames",
+      [".arca"]
     ],
 
     [
@@ -16,5 +17,5 @@ export default [
       "Loot",
       "https://www.lootproject.com"
     ],
-  ] as Array<[string, string, string]>
+  ] as Array<[string, string, string, Array<string>]>
   

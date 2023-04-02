@@ -91,11 +91,15 @@ function NftCard({ contract, collectionName, collectionUrl }: NftProps) {
         <div className={styles.cardlabel}>
           <a href={collectionUrl} target="_blank">{collectionName}</a>
         </div>
+
         <TokenIdInput tokenId={tokenId} onRefresh={refreshToken}></TokenIdInput>
+        <select name="renderer" id="renderer">
+            <option value="default">useNFT</option>
+            <option value="saab">.arca</option>
+        </select>        
         <Nft 
             contract={contract}
             tokenId={tokenId}/>
-
       </section>
   )
 }

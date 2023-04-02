@@ -69,7 +69,7 @@ export default function Home() {
               arcadians-avatar-builder <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              Supporting project showing avatar customization using the Arcadians collection
+              Supporting avatar customization project using the Arcadians collection
             </p>
           </a>
 
