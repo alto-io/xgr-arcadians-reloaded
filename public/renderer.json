@@ -1,0 +1,10 @@
+{
+  "name": "ORA + GLTF Renderer",
+  "description": "Part collections stored in .ora and animation data stored in .gltf",
+  "project_url": "https://github.com/alto-io/xgr-ora-gltf",
+  "image": "https://xgr-ora-gltf.vercel.app/image/",
+  "animation_url": "https://xgr-ora-gltf.vercel.app/animation/",
+  "playground_url": "https://playground.arcadians.io",
+  "ora_url": "https://xgr-ora-gltf.vercel.app/assets/arcadians.ora",
+  "gltf_url": "https://xgr-ora-gltf.vercel.app/assets/arcadians.gltf"
+}    

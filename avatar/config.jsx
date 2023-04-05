@@ -34,8 +34,8 @@ export var g_config = {
 	list: [
 		{
 			id: "Male",
-			gltfPath: "/v1/gltf/Male/" /** folder to the gltf */,
-			gltfFileName: "ArcadianAvatar.gltf" /** filename of the gltf */,
+			gltfPath: "/assets/" /** folder to the gltf */,
+			gltfFileName: "arcadians.gltf" /** filename of the gltf */,
 			position: { x: 0, y: -1, z: 0 } /** Position on the scene */,
 			scaling: { x: 1, y: 1, z: -1 } /** Scale of the avatar */,
 			materials: [
@@ -43,15 +43,15 @@ export var g_config = {
 				 * id - material names defined in Blender
 				 * name - friendly name to be shown on the html page
 				 */
-				{ id: "mat.mskin", name: "Skin" },
-				{ id: "mat.meyes", name: "Eyes" },
-				{ id: "mat.mhead", name: "Head" },
-				{ id: "mat.mmouth", name: "Mouth" },
-				{ id: "mat.mtop", name: "Top" },
-				{ id: "mat.mleft", name: "Left Hand" },
-				{ id: "mat.mright", name: "Right Hand" },
-				{ id: "mat.mbot", name: "Bottom" },
-				{ id: "mat.mshad", name: "Shadow" },
+				{ id: "Skin", name: "Skin" },
+				{ id: "Eyes", name: "Eyes" },
+				{ id: "Head", name: "Head" },
+				{ id: "Mouth", name: "Mouth" },
+				{ id: "Top", name: "Top" },
+				{ id: "Left Hand", name: "Left Hand" },
+				{ id: "Right Hand", name: "Right Hand" },
+				{ id: "Bottom", name: "Bottom" },
+				{ id: "Shadow", name: "Shadow" },
 			],
 			animations: [
 				/**
@@ -119,5 +119,5 @@ export var g_config = {
 	],
 
 	partsConfigPath: "/v1/arcadian-parts/partsConfig.json",
-	oraConfigPath: "/ora/assets.ora"
+	oraConfigPath: "/assets/arcadians.ora"
 };

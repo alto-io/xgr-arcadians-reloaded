@@ -12,6 +12,9 @@ export const colors = {
     accentOver2: "#000000",
   }
   
+const CANVAS_WIDTH = 399;
+const CANVAS_HEIGHT = 399;  
+
 type Attribute = {
     trait_type: string
     value: string
@@ -148,7 +151,7 @@ let loadedNft:NftMetadata;
 
     return (
       <>
-        <canvas height="280" width="280" ref={reactCanvasBabylon} />
+        <canvas height={CANVAS_HEIGHT} width={CANVAS_WIDTH} ref={reactCanvasBabylon} />
         {(() => {
           if (loading) {
             return <NftLoading />

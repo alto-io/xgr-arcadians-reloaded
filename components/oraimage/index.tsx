@@ -13,8 +13,8 @@ type Attribute = {
     value: string
 }
 
-const canvasWidth = 399;
-const canvasHeight = 399;
+const CANVAS_WIDTH = 399;
+const CANVAS_HEIGHT = 399;
 
 function OraImage ( {
     contract, 
@@ -46,7 +46,7 @@ function OraImage ( {
 
     return (
         <>
-          <canvas height={canvasHeight} width={canvasWidth} ref={reactCanvasOra} />
+          <canvas height={CANVAS_HEIGHT} width={CANVAS_WIDTH} ref={reactCanvasOra} />
           {(() => {
           if (loading) {
             return <NftLoading />
