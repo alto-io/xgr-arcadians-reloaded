@@ -12,8 +12,8 @@ export const colors = {
     accentOver2: "#000000",
   }
   
-const CANVAS_WIDTH = 270;
-const CANVAS_HEIGHT = 270;  
+const CANVAS_WIDTH = 280;
+const CANVAS_HEIGHT = 280;  
 
 type Attribute = {
     trait_type: string
