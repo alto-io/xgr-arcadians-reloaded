@@ -15,7 +15,7 @@ Adding this forked repository to Vercel as a project should do this, similar to 
 
 ## Update renderer.json
 
-Update the values in public/renderer.json to reflect your own collection’s details. 
+Update the values in [public/renderer.json](public/renderer.json) to reflect your own collection’s details. 
 
 The **name**, **description**, **project_url**, **image**, and **animation_url** fields are required. The **image** and **animation_url** works similarly to how they are used in marketplaces such as Opensea, and will be appended with a tokenid.
 
