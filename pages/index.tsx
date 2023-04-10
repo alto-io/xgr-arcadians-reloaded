@@ -18,9 +18,11 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          <p>
-            Arcadians Renderer - ORA images with GLTF animations
-          </p>
+          <a href="renderer.json" target="_blank">
+            <p>
+              Arcadians Renderer - ORA images with GLTF animations
+            </p>
+          </a>
           <div>
             <a
               href="https://www.opgames.org/"
@@ -39,58 +41,122 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.center}>
-        <NftGrid nftCollections={[...nftCollections]} />
-          
-        </div>
-
         <div className={styles.grid}>
           <a
-            href="https://github.com/alto-io/cross-game-nft-renderer"
+            href="project_url"
             className={styles.card}
             target="_blank"
             rel="noopener noreferrer"
           >
             <h2 className={inter.className}>
-              Github <span>-&gt;</span>
+              project_url <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              Find source code and more in-depth information about the cross-game renderer
+              source code and documentation
             </p>
           </a>
 
           <a
-            href="https://github.com/alto-io/arcadians-avatar-builder"
+            href="renderer.json"
             className={styles.card}
             target="_blank"
             rel="noopener noreferrer"
           >
             <h2 className={inter.className}>
-              arcadians-avatar-builder <span>-&gt;</span>
+              renderer_url <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              Supporting avatar customization project using the Arcadians collection
+              json file containing rendering info
             </p>
           </a>
 
 
           <a
-            href="https://use-nft.spectre.xyz/"
+            href="image/2345"
             className={styles.card}
             target="_blank"
             rel="noopener noreferrer"
           >
             <h2 className={inter.className}>
-              use-nft <span>-&gt;</span>
+              /image <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              This project uses spectre&apos;s use-nft as a fallback renderer
+              image route example
+            </p>
+          </a>
+
+          <a
+            href="animation/2345"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              /animation <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              animation route example
+            </p>
+          </a>
+
+          <a
+            href="assets/arcadians.ora"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              /assets/arcadians.ora <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              ORA file containing all arcadian parts
+            </p>
+          </a>
+
+          <a
+            href="assets/arcadians.gltf"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              /assets/arcadians.gltf <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              GLTF file containing arcadian animations
+            </p>
+          </a>
+
+          <a
+            href="raw/arcadians.psd"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              /arcadians.psd <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              Source PSD file (can export to ORA using GIMP)
+            </p>
+          </a>
+
+          <a
+            href="raw/arcadians.blend"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              /arcadians.blend <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              Source Blender file (can export to GLTF using Blender)
             </p>
           </a>
 
 
-        </div>
-      </main>
+        </div>      </main>
     </>
   )
 }
