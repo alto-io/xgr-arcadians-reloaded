@@ -21,7 +21,7 @@ The **name**, **description**, **project_url**, **image**, and **animation_url**
 
 ## Rendering Code
 
-The starting point for the rendering code is in the (pages/image)[pages/image] and (pages/animation)[pages/animation] directories. Both make use of the (avatar directory)[avatar] code.
+The starting point for the rendering code is in the [pages/image](pages/image) and [pages/animation](pages/animation) directories. Both make use of the [avatar directory](avatar) code.
 
 Don’t hesitate to simply use the default ORA and GLTF implementation. This is actually encouraged as this will make your NFT compatible with other collections that use a similar implementation. 
 
@@ -52,4 +52,4 @@ Listed below for quick reference:
 **Arcadians Smart Contract Details**
 
 - ERC-721
-- Address: Ethereum Mainnet: [0xc3c8a1e1ce5386258176400541922c414e1b35fd](https://etherscan.io/token/0xc3c8a1e1ce5386258176400541922c414e1b35fd)
+- Address: Ethereum Mainnet: [0xc3c8a1e1ce5386258176400541922c414e1b35fd](https://etherscan.io/token/0xc3c8a1e1ce5386258176400541922c414e1b35fd#code)
