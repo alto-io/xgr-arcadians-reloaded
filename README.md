@@ -25,7 +25,7 @@ The starting point for the rendering code is in the [pages/image](pages/image) a
 
 Don’t hesitate to simply use the default ORA and GLTF implementation. This is actually encouraged as this will make your NFT compatible with other collections that use a similar implementation. 
 
-Otherwise, feel free to edit the above code and implement your own rendering. The standard is flexible, the important part for the collection to render on the [XGR Homepage](https://xgr.opgames.org/) is that **renderer_url** serves the correct **image** and**animation_url**. 
+Otherwise, feel free to edit the above code and implement your own rendering. The standard is flexible, the important part for the collection to render on the [XGR Homepage](https://xgr.opgames.org/) is that **renderer_url** serves the correct **image** and **animation_url**. 
 
 ## Adding Collection to XGR Homepage
 
