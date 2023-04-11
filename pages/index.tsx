@@ -43,7 +43,7 @@ export default function Home() {
 
         <div className={styles.grid}>
           <a
-            href="project_url"
+            href="https://github.com/alto-io/xgr-arcadians"
             className={styles.card}
             target="_blank"
             rel="noopener noreferrer"
