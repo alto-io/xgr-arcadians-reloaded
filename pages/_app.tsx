@@ -8,7 +8,7 @@ import type { NftMetadata } from "use-nft"
 import { providers } from "ethers"
 import { NftProvider, FetcherDeclarationEthers } from "use-nft"
 
-const INFURA_KEY = process.env.VITE_INFURA_KEY
+const INFURA_KEY = process.env.INFURA_KEY
 
 const fetcher: FetcherDeclarationEthers = [
   "ethers",
