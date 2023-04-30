@@ -1,11 +1,11 @@
 {
-  "name": "Arcadians Renderer",
+  "name": "Arcadians: Reloaded Renderer",
   "description": "Part collections stored in .ora and animation data stored in .gltf",
-  "project_url": "https://github.com/alto-io/xgr-arcadians",
-  "image": "https://xgr-arcadians.opgames.org/api/image/",
-  "animation_url": "https://xgr-arcadians.opgames.org/animation/",
-  "playground_url": "https://playground.arcadians.io",
-  "ora_url": "https://xgr-arcadians.opgames.org/assets/arcadians.ora",
-  "gltf_url": "https://xgr-arcadians.opgames.org/assets/arcadians.gltf",
-  "fbx_url": "https://xgr-arcadians.opgames.org/assets/arcadians.fbx"
+  "project_url": "https://github.com/alto-io/xgr-arcadians-reloaded",
+  "image": "https://xgr-arcadians-reloaded.vercel.app/api/image/",
+  "animation_url": "https://xgr-arcadians-reloaded.vercel.app/animation/",
+  "playground_url": "https://arcadians.io",
+  "ora_url": "https://xgr-arcadians-reloaded.vercel.app/assets/arcadians.ora",
+  "gltf_url": "https://xgr-arcadians-reloaded.vercel.app/assets/arcadians.gltf",
+  "fbx_url": "https://xgr-arcadians-reloaded.vercel.app/assets/arcadians.fbx"
 }    
