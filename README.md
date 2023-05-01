@@ -1,6 +1,6 @@
 ## What is it?
 
-An [XGR](https://github.com/alto-io/cross-game-renderer) renderer implementation for the [Arcadians](https://arcadians.io/) collection. Uses the [Open Raster Format](https://gitlab.com/inklabapp/jsora)
+An [XGR](https://github.com/alto-io/cross-game-renderer) renderer implementation for the [Arcadians: Reloaded](https://arcadians.io/) collection. Uses the [Open Raster Format](https://gitlab.com/inklabapp/jsora)
  (.ora) for image layers and [GL Transmission File](https://learn.microsoft.com/en-us/windows/mixed-reality/distribute/creating-3d-models-for-use-in-the-windows-mixed-reality-home) (.gltf) for animation.
 
 ## Creating your own Renderer
