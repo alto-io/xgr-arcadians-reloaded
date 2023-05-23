@@ -1,6 +1,6 @@
 import type { NftMetadata } from "use-nft"
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNft } from "use-nft"
 import { Engine, Scene } from "@babylonjs/core";
 import * as AvatarBuilder from "../../avatar/";
@@ -37,6 +37,12 @@ let loadedNft:NftMetadata;
     {
     const { nft, loading, error, reload } = useNft(contract, tokenId)
     const reactCanvasBabylon = useRef(null);
+    const [ canvasSize, setCanvasSize ] = useState(
+      {
+        width: CANVAS_WIDTH,
+        height: CANVAS_HEIGHT
+      }
+    );
 
     const onSceneReady = async (scene) => {
         // console.log("onSceneReady");
@@ -117,7 +123,15 @@ let loadedNft:NftMetadata;
     useEffect(() => {
         const { current: canvas } = reactCanvasBabylon;
 
+       
         if (!canvas) return;
+
+        setCanvasSize(
+          {
+            height: window.innerHeight, 
+            width: window.innerWidth
+          }
+        )
 
         const engine = new Engine(canvas);
         const scene = new Scene(engine);
@@ -151,7 +165,8 @@ let loadedNft:NftMetadata;
 
     return (
       <>
-        <canvas height={CANVAS_HEIGHT} width={CANVAS_WIDTH} ref={reactCanvasBabylon} />
+          <canvas height={canvasSize.height} width={canvasSize.width} ref={reactCanvasBabylon} />
+        )
         {(() => {
           if (loading) {
             return <NftLoading />
