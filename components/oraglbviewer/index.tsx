@@ -166,7 +166,6 @@ let loadedNft:NftMetadata;
     return (
       <>
           <canvas height={canvasSize.height} width={canvasSize.width} ref={reactCanvasBabylon} />
-        )
         {(() => {
           if (loading) {
             return <NftLoading />
