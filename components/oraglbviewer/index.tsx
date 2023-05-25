@@ -2,8 +2,11 @@ import type { NftMetadata } from "use-nft"
 
 import { useEffect, useRef, useState } from "react";
 import { useNft } from "use-nft"
+import { useArcadiansApi } from "../../hooks/useArcadiansApi";
 import { Engine, Scene } from "@babylonjs/core";
 import * as AvatarBuilder from "../../avatar/";
+
+
 
 export const colors = {
     background: "#111111",
@@ -35,7 +38,7 @@ let loadedNft:NftMetadata;
     tokenId
     } : OraGlbViewerProps )
     {
-    const { nft, loading, error, reload } = useNft(contract, tokenId)
+    const { data, isLoading, error } = useArcadiansApi(tokenId)
     const reactCanvasBabylon = useRef(null);
     const [ canvasSize, setCanvasSize ] = useState(
       {
@@ -167,18 +170,17 @@ let loadedNft:NftMetadata;
       <>
           <canvas height={canvasSize.height} width={canvasSize.width} ref={reactCanvasBabylon} />
         {(() => {
-          if (loading) {
+          if (isLoading) {
             return <NftLoading />
           }
           if (error) {
-            return <NftError error={error} reload={reload} />
+            return <NftError error={error} />
           }
           
-          loadedNft = nft;
+          loadedNft = data;
 
           return (
           <> 
-          <AnimatedNFT nft={nft} />
           </>
           )
           
@@ -197,13 +199,13 @@ function NftLoading() {
   )
 }
 
-function NftError({ error, reload }: { error: Error; reload: () => void }) {
+function NftError({ error }: { error: Error }) {
   return (
     <div
     >
       <p>
         Loading error.
-        <br /> <button onClick={reload}>Retry?</button>
+        <br />
       </p>
     </div>
   )

@@ -390,7 +390,7 @@ function findNodeInOra(part) {
 
 export function loadNFT(nft) {
 
-    nft.rawData.attributes.map( (part) => {
+    nft.attributes.map( (part) => {
         let partPath = findNodeInOra(part);
         if (partPath) {
             updateBabylonParts(part.trait_type, partPath);
