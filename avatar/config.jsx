@@ -43,15 +43,17 @@ export var g_config = {
 				 * id - material names defined in Blender
 				 * name - friendly name to be shown on the html page
 				 */
-				{ id: "Skin", name: "Skin" },
+				{ id: "Accessory", name: "Accessory" },
+				{ id: "Headgear", name: "Headgear" },
+				{ id: "Hairstyle", name: "Hairstyle" },
 				{ id: "Eyes", name: "Eyes" },
-				{ id: "Head", name: "Head" },
-				{ id: "Mouth", name: "Mouth" },
-				{ id: "Top", name: "Top" },
 				{ id: "Left Hand", name: "Left Hand" },
 				{ id: "Right Hand", name: "Right Hand" },
+				{ id: "Mouth", name: "Mouth" },
+				{ id: "Top", name: "Top" },
 				{ id: "Bottom", name: "Bottom" },
-				{ id: "Shadow", name: "Shadow" },
+				{ id: "Skin", name: "Skin" },
+				{ id: "BG", name: "BG" },
 			],
 			animations: [
 				/**
