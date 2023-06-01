@@ -1,9 +1,12 @@
 import type { NftMetadata } from "use-nft"
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNft } from "use-nft"
+import { useArcadiansApi } from "../../hooks/useArcadiansApi";
 import { Engine, Scene } from "@babylonjs/core";
 import * as AvatarBuilder from "../../avatar/";
+
+
 
 export const colors = {
     background: "#111111",
@@ -35,8 +38,14 @@ let loadedNft:NftMetadata;
     tokenId
     } : OraGlbViewerProps )
     {
-    const { nft, loading, error, reload } = useNft(contract, tokenId)
+    const { data, isLoading, error } = useArcadiansApi(tokenId)
     const reactCanvasBabylon = useRef(null);
+    const [ canvasSize, setCanvasSize ] = useState(
+      {
+        width: CANVAS_WIDTH,
+        height: CANVAS_HEIGHT
+      }
+    );
 
     const onSceneReady = async (scene) => {
         // console.log("onSceneReady");
@@ -117,7 +126,15 @@ let loadedNft:NftMetadata;
     useEffect(() => {
         const { current: canvas } = reactCanvasBabylon;
 
+       
         if (!canvas) return;
+
+        setCanvasSize(
+          {
+            height: window.innerHeight, 
+            width: window.innerWidth
+          }
+        )
 
         const engine = new Engine(canvas);
         const scene = new Scene(engine);
@@ -151,20 +168,19 @@ let loadedNft:NftMetadata;
 
     return (
       <>
-        <canvas height={CANVAS_HEIGHT} width={CANVAS_WIDTH} ref={reactCanvasBabylon} />
+          <canvas height={canvasSize.height} width={canvasSize.width} ref={reactCanvasBabylon} />
         {(() => {
-          if (loading) {
+          if (isLoading) {
             return <NftLoading />
           }
           if (error) {
-            return <NftError error={error} reload={reload} />
+            return <NftError error={error} />
           }
           
-          loadedNft = nft;
+          loadedNft = data;
 
           return (
           <> 
-          <AnimatedNFT nft={nft} />
           </>
           )
           
@@ -183,13 +199,13 @@ function NftLoading() {
   )
 }
 
-function NftError({ error, reload }: { error: Error; reload: () => void }) {
+function NftError({ error }: { error: Error }) {
   return (
     <div
     >
       <p>
         Loading error.
-        <br /> <button onClick={reload}>Retry?</button>
+        <br />
       </p>
     </div>
   )

@@ -237,10 +237,16 @@ export function displayPart(itemPath, rerender) {
 // https://stackoverflow.com/questions/43017000/babel-ignores-es6-inside-react-dangerouslysetinnerhtml-script-tag
 // 
 export async function renderAvatar() {
+    let rend;
 
-    const rend = new jsora.Renderer(g_jsoraProject);
+    try {
+    rend = new jsora.Renderer(g_jsoraProject);
+    } catch (e) {
+        console.log("canvas dimensions not ready, retrying in 1 second");
+        setTimeout(renderAvatar, 1000);
+        return;
+    }
     var renderCanvas = await rend.make_merged_image();
-
     var sourceImageData = renderCanvas.toDataURL("image/png");
     var destCanvasContext = g_oraCanvas.getContext('2d');
     var destinationImage = new Image;
@@ -384,7 +390,7 @@ function findNodeInOra(part) {
 
 export function loadNFT(nft) {
 
-    nft.rawData.attributes.map( (part) => {
+    nft.attributes.map( (part) => {
         let partPath = findNodeInOra(part);
         if (partPath) {
             updateBabylonParts(part.trait_type, partPath);

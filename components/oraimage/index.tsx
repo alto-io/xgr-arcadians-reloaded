@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNft } from "use-nft"
 import * as AvatarBuilder from "../../avatar/";
 import type { NftMetadata } from "use-nft"
@@ -23,10 +23,23 @@ function OraImage ( {
     {
     const { nft, loading, error, reload } = useNft(contract, tokenId)
     const reactCanvasOra = useRef(null);
+    const [ canvasSize, setCanvasSize ] = useState(
+      {
+        width: CANVAS_WIDTH,
+        height: CANVAS_HEIGHT
+      }
+    );
 
     useEffect(() => {
         const { current: canvas } = reactCanvasOra;
         if (!canvas) return;
+
+        setCanvasSize(
+          {
+            height: window.innerHeight, 
+            width: window.innerWidth
+          }
+        )
 
         prepareJsOra(canvas);
     }, []);  
@@ -46,7 +59,9 @@ function OraImage ( {
 
     return (
         <>
-          <canvas height={CANVAS_HEIGHT} width={CANVAS_WIDTH} ref={reactCanvasOra} />
+
+        
+          <canvas height={canvasSize.height} width={canvasSize.width} ref={reactCanvasOra} />
           {(() => {
           if (loading) {
             return <NftLoading />
