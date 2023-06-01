@@ -52,6 +52,9 @@ export var g_config = {
 				{ id: "Right Hand", name: "Right Hand" },
 				{ id: "Bottom", name: "Bottom" },
 				{ id: "Shadow", name: "Shadow" },
+				{ id: "Skin", name: "Skin" },
+				{ id: "BG", name: "BG" },
+				{ id: "Background", name: "Background" },
 			],
 			animations: [
 				/**
