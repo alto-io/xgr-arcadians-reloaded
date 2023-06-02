@@ -1,10 +1,10 @@
 import useSWR from "swr";
 
-const ARCADIANS_API = "https://arcadians.dev.outplay.games/v2/arcadians/"
+const ARCADIANS_API = process.env.NEXT_PUBLIC_ARCADIANS_API
 
 const fetchTokenMetadata = async(uri) : Promise<any> => {
 
-    const uriWithId = `${ARCADIANS_API}${uri}?refreshMetadata=true`;
+    const uriWithId = `${ARCADIANS_API}${uri}`; // ?refreshMetadata=true`;
 
     const response = await fetch(uriWithId);
     const data = await response.json();
